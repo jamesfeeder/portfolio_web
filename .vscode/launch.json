@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "name": "Debug",
             "request": "launch",
@@ -16,6 +17,12 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
+        },
+        {
+            "name": "Profile",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
         }
     ]
 }
