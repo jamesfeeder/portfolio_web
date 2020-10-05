@@ -15,75 +15,17 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   ];
 
   TabController _tabController;
-  PageController _pageController;
-  
-  // Trigger TabBar to the next tab when XX% [0.XX] of prev. page
-  double preTrigger = 0.9;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: tabs.length);
-    _tabController.addListener(syncTabBar);
-    _pageController = PageController(initialPage: 0);
-    _pageController.addListener(onPageChanged);
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
-  }
-
-  void changePageWithTabBar(int index) {
-    _pageController.animateToPage(
-      index, 
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOut
-    ); 
-  }
-
-  void syncTabBar() {
-    if (!_tabController.indexIsChanging) {
-      if (_tabController.index != _pageController.page.toInt()) {
-        //changeTabBar(_pageController.page.toInt());
-        if (_pageController.page > _pageController.page.toInt()+preTrigger) {
-          changeTabBar(_pageController.page.toInt()+1);
-        } else {
-          changeTabBar(_pageController.page.toInt());
-        }
-      }
-    }
-  }
-
-  void onPageChanged() {
-    //print("PageView: ${_pageController.page}, PageView(Int): ${_pageController.page.toInt()}");
-    if (_pageController.page > 0) {
-      // Do something
-    }
-    if (!_tabController.indexIsChanging) {
-      if (_pageController.page > _pageController.page.toInt()+preTrigger) {
-        changeTabBar(_pageController.page.toInt()+1);
-      } else {
-        changeTabBar(_pageController.page.toInt());
-      }
-    }
-  }
-
-  void changeTabBar(int index) {
-    _tabController.animateTo(
-      index,
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOut
-    );
-  }
-
-  void jmpToStart() {
-    _pageController.animateToPage(
-      0, 
-      duration: Duration(milliseconds: 250),
-      curve: Curves.easeInOut
-    );
   }
 
   @override
@@ -109,25 +51,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       ),
       body: Scrollbar(
         radius: Radius.circular(2),
-        child: PageView(
-          scrollDirection: Axis.vertical,
-          pageSnapping: false,
-          controller: _pageController,
-          children: [
-            Container(
-              color: Colors.blue[200],
-              child: Center(child: Text("1"),),
-            ),
-            Container(
-              color: Colors.blue[400],
-              child: Center(child: Text("2"),),
-            ),
-            Container(
-              color: Colors.blue[600],
-              child: Center(child: Text("3"),),
-            )
-          ],
-        ),
+        child: tabBarView(),
       ),
     );
   }
@@ -147,8 +71,29 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       ),
       isScrollable: true,
       controller: _tabController,
-      onTap: changePageWithTabBar,
       tabs: tabs,
+    );
+  }
+
+  TabBarView tabBarView() {
+    final contents = [
+        Container(
+          color: Colors.blue[200],
+          child: Center(child: Text("1"),),
+        ),
+        Container(
+          color: Colors.blue[400],
+          child: Center(child: Text("2"),),
+        ),
+        Container(
+          color: Colors.blue[600],
+          child: Center(child: Text("3"),),
+        )
+      ];
+    return TabBarView(
+      controller: _tabController,
+      physics: ClampingScrollPhysics(),
+      children: contents,
     );
   }
 }
