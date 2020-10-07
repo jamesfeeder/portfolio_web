@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:portfolio/page/tabs/tab_contact.dart';
 import 'package:portfolio/page/tabs/tab_home.dart';
+import 'package:portfolio/page/tabs/tab_works.dart';
 
 class Root extends StatefulWidget {
   @override
@@ -10,7 +12,7 @@ class Root extends StatefulWidget {
 class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
 
   final List<Tab> tabs = [
-    Tab(text: "Home"),
+    Tab(text: "Jetsadakorn Maliwan"),
     Tab(text: "Works"),
     Tab(text: "Contact")
   ];
@@ -79,14 +81,8 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   TabBarView tabBarView() {
     final contents = [
         HomeTab(),
-        Container(
-          color: Colors.blue[400],
-          child: Center(child: Text("2"),),
-        ),
-        Container(
-          color: Colors.blue[600],
-          child: Center(child: Text("3"),),
-        )
+        WorksTab(),
+        ContactTab()
       ];
     return TabBarView(
       controller: _tabController,
