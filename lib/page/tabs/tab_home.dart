@@ -13,6 +13,7 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height - 64,
       child: Padding(
         padding: EdgeInsets.all(88),
         child: RepaintBoundary(

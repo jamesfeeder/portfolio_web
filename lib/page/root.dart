@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
 import 'package:portfolio/page/tabs/tab_contact.dart';
 import 'package:portfolio/page/tabs/tab_home.dart';
 import 'package:portfolio/page/tabs/tab_works.dart';
@@ -18,17 +20,51 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   ];
 
   TabController _tabController;
+  ItemScrollController _itemScrollController;
+  ItemPositionsListener _itemPositionsListener;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: tabs.length);
+    _itemScrollController = ItemScrollController();
+    _itemPositionsListener = ItemPositionsListener.create();
+    _tabController.addListener(onScroll);
+    _itemPositionsListener.itemPositions.addListener(onScroll);
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
+  }
+
+  void changePage(int index) {
+    _itemScrollController.scrollTo(
+      index: index,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOutExpo
+    );
+  }
+
+  void changeTab(int index) {
+    _tabController.animateTo(
+      index,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOutExpo
+    );
+  }
+
+  void onScroll() {
+    ItemPosition data = _itemPositionsListener.itemPositions.value.first;
+    print("Index: ${data.index}, LeadingEdge: ${data.itemLeadingEdge}, TrailingEnd: ${data.itemTrailingEdge}");
+    if (!_tabController.indexIsChanging) {
+      if (data.index == _tabController.index && data.itemTrailingEdge < 0.1) {
+        changeTab(data.index+1);
+      } else if (data.index != _tabController.index && data.itemTrailingEdge > 0.1) {
+        changeTab(data.index);
+      }
+    }
   }
 
   @override
@@ -54,7 +90,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       ),
       body: Scrollbar(
         radius: Radius.circular(2),
-        child: tabBarView(),
+        child: pageList(),
       ),
     );
   }
@@ -75,19 +111,24 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       isScrollable: true,
       controller: _tabController,
       tabs: tabs,
+      onTap: changePage,
     );
   }
 
-  TabBarView tabBarView() {
+  Widget pageList() {
     final contents = [
         HomeTab(),
         WorksTab(),
         ContactTab()
       ];
-    return TabBarView(
-      controller: _tabController,
-      physics: ClampingScrollPhysics(),
-      children: contents,
+    return ScrollablePositionedList.builder(
+      padding: EdgeInsets.zero,
+      itemPositionsListener: _itemPositionsListener,
+      itemScrollController: _itemScrollController,
+      itemCount: contents.length,
+      itemBuilder: (context, index) {
+        return contents[index];
+      },
     );
   }
 }
