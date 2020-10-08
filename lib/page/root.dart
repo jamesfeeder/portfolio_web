@@ -23,6 +23,8 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   ItemScrollController _itemScrollController;
   ItemPositionsListener _itemPositionsListener;
 
+  FloatingActionButton scrollUpButton;
+
   @override
   void initState() {
     super.initState();
@@ -31,6 +33,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
     _itemPositionsListener = ItemPositionsListener.create();
     _tabController.addListener(onScroll);
     _itemPositionsListener.itemPositions.addListener(onScroll);
+    scrollUpButton = null;
   }
 
   @override
@@ -51,7 +54,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
     _tabController.animateTo(
       index,
       duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOutExpo
+      curve: Curves.easeInOut
     );
   }
 
@@ -64,6 +67,21 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       } else if (data.index != _tabController.index && data.itemTrailingEdge > 0.1) {
         changeTab(data.index);
       }
+    }
+
+    if (data.index == 0 && data.itemTrailingEdge > 0.8) {
+      setState(() {
+        scrollUpButton = null;
+      });
+    } else {
+      setState(() {
+        scrollUpButton = FloatingActionButton(
+          child: Icon(Icons.arrow_upward_rounded),
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          onPressed: () => changePage(0),
+        );
+      });
     }
   }
 
@@ -92,6 +110,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
         radius: Radius.circular(2),
         child: pageList(),
       ),
+      floatingActionButton: scrollUpButton,
     );
   }
 
@@ -123,6 +142,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       ];
     return ScrollablePositionedList.builder(
       padding: EdgeInsets.zero,
+      minCacheExtent: 102400,
       itemPositionsListener: _itemPositionsListener,
       itemScrollController: _itemScrollController,
       itemCount: contents.length,
