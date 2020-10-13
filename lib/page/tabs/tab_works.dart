@@ -5,26 +5,15 @@ class WorksTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
+      addRepaintBoundaries: true,
+      padding: EdgeInsets.all(88),
       physics: NeverScrollableScrollPhysics(),
       children: [
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
-        FlutterLogo(size: 72,),
+        Text("Works", style: TextStyle(fontSize: 72, fontWeight: FontWeight.w500)),
+        SizedBox(height: 24,),
+        // GridView.count(
+        //   crossAxisCount: 4,
+        // )
       ],
     );
   }

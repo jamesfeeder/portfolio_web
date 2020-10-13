@@ -14,7 +14,7 @@ class Root extends StatefulWidget {
 class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
 
   final List<Tab> tabs = [
-    Tab(text: "Jetsadakorn Maliwan"),
+    Tab(text: "Home"),
     Tab(text: "Works"),
     Tab(text: "Contact")
   ];
@@ -54,13 +54,14 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
     _tabController.animateTo(
       index,
       duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOut
+      curve: Curves.easeInOutExpo
     );
   }
 
   void onScroll() {
     ItemPosition data = _itemPositionsListener.itemPositions.value.first;
-    print("Index: ${data.index}, LeadingEdge: ${data.itemLeadingEdge}, TrailingEnd: ${data.itemTrailingEdge}");
+    // print(_tabController.animation);
+    // print("Index: ${data.index}, LeadingEdge: ${data.itemLeadingEdge}, TrailingEnd: ${data.itemTrailingEdge}");
     if (!_tabController.indexIsChanging) {
       if (data.index == _tabController.index && data.itemTrailingEdge < 0.1) {
         changeTab(data.index+1);
@@ -75,8 +76,9 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       });
     } else {
       setState(() {
-        scrollUpButton = FloatingActionButton(
-          child: Icon(Icons.arrow_upward_rounded),
+        scrollUpButton = FloatingActionButton.extended(
+          icon: Icon(Icons.arrow_upward_rounded),
+          label: Text("Scroll Up"),
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           onPressed: () => changePage(0),
@@ -120,7 +122,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       labelColor: Colors.white,
       labelStyle: TextStyle(fontFamily: "Raleway", fontSize: 16, fontWeight: FontWeight.w500),
       unselectedLabelColor: Colors.black,
-      unselectedLabelStyle: TextStyle(fontFamily: "Raleway", fontSize: 16),
+      unselectedLabelStyle: TextStyle(fontFamily: "Raleway", fontSize: 16, fontWeight: FontWeight.w500),
       indicator: BubbleTabIndicator(
         indicatorHeight: 38,
         indicatorRadius: 8,
@@ -143,6 +145,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
     return ScrollablePositionedList.builder(
       padding: EdgeInsets.zero,
       minCacheExtent: 102400,
+      addRepaintBoundaries: true,
       itemPositionsListener: _itemPositionsListener,
       itemScrollController: _itemScrollController,
       itemCount: contents.length,
