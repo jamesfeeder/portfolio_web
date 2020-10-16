@@ -146,7 +146,7 @@ class HomeTab extends StatelessWidget {
               ),
               RichText(
                 text: TextSpan(
-                  text: 'return ',
+                  text: '  return ',
                   style: TextStyle(fontFamily: "JetBrains Mono", color: codeRed, fontSize: codeFontSize, fontWeight: FontWeight.w400),
                   children: <TextSpan>[
                     TextSpan(
@@ -154,6 +154,12 @@ class HomeTab extends StatelessWidget {
                       style: TextStyle(fontFamily: "JetBrains Mono", color: codeBlack, fontSize: codeFontSize, fontWeight: FontWeight.w400),
                     )
                   ]
+                ),
+              ),
+              RichText(
+                text: TextSpan(
+                  text: '}',
+                  style: TextStyle(fontFamily: "JetBrains Mono", color: codeBlack, fontSize: codeFontSize, fontWeight: FontWeight.w400),
                 ),
               ),
             ],

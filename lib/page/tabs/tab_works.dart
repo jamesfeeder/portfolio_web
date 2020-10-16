@@ -9,11 +9,10 @@ class WorksTab extends StatelessWidget {
       padding: EdgeInsets.all(88),
       physics: NeverScrollableScrollPhysics(),
       children: [
-        Text("Works", style: TextStyle(fontSize: 72, fontWeight: FontWeight.w500)),
-        SizedBox(height: 24,),
-        // GridView.count(
-        //   crossAxisCount: 4,
-        // )
+        Container(
+          height: MediaQuery.of(context).size.height-(2*88)-64,
+          child: Text("Works", style: TextStyle(fontSize: 72, fontWeight: FontWeight.w500))
+        ),
       ],
     );
   }

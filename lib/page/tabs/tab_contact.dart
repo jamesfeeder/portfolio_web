@@ -3,10 +3,17 @@ import 'package:flutter/material.dart';
 class ContactTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
-      height: MediaQuery.of(context).size.height - 64,
-      width: MediaQuery.of(context).size.width,
+    return ListView(
+      shrinkWrap: true,
+      addRepaintBoundaries: true,
+      padding: EdgeInsets.all(88),
+      physics: NeverScrollableScrollPhysics(),
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height-(2*88)-64,
+          child: Text("Contact", style: TextStyle(fontSize: 72, fontWeight: FontWeight.w500))
+        ),
+      ],
     );
   }
 }
