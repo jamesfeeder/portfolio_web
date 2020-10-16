@@ -45,45 +45,49 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   void changePage(int index) {
     _itemScrollController.scrollTo(
       index: index,
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOutExpo
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOutQuart
     );
   }
 
   void changeTab(int index) {
     _tabController.animateTo(
       index,
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOutExpo
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOutQuart
     );
   }
 
   void onScroll() {
     ItemPosition data = _itemPositionsListener.itemPositions.value.first;
-    // print(_tabController.animation);
-    // print("Index: ${data.index}, LeadingEdge: ${data.itemLeadingEdge}, TrailingEnd: ${data.itemTrailingEdge}");
     if (!_tabController.indexIsChanging) {
-      if (data.index == _tabController.index && data.itemTrailingEdge < 0.1) {
-        changeTab(data.index+1);
-      } else if (data.index != _tabController.index && data.itemTrailingEdge > 0.1) {
-        changeTab(data.index);
+      if (data.index == _tabController.index) {
+        if (data.itemTrailingEdge < 0.1) {
+          print("[0] Call changeTab${data.index+1} at TabIndex: ${_tabController.index}, PageIndex: ${data.index}, LeadingEdge: ${data.itemLeadingEdge}, TrailingEnd: ${data.itemTrailingEdge}");
+          changeTab(data.index+1);
+        } else {
+          // changeTab(data.index);
+        }
+      } else {
+        if (data.itemTrailingEdge > 0.1) {
+          print("[1] Call changeTab${data.index} at TabIndex: ${_tabController.index}, PageIndex: ${data.index}, LeadingEdge: ${data.itemLeadingEdge}, TrailingEnd: ${data.itemTrailingEdge}");
+          changeTab(data.index);
+        } else {
+          // changeTab(data.index+1);
+        }
       }
     }
 
     if (data.index == 0 && data.itemTrailingEdge > 0.8) {
-      setState(() {
-        scrollUpButton = null;
-      });
+      scrollUpButton = null;
     } else {
-      setState(() {
-        scrollUpButton = FloatingActionButton.extended(
-          icon: Icon(Icons.arrow_upward_rounded),
-          label: Text("Scroll Up"),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          onPressed: () => changePage(0),
-        );
-      });
+      scrollUpButton = FloatingActionButton.extended(
+        icon: Icon(Icons.arrow_upward_rounded),
+        label: Text("Scroll Up"),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        onPressed: () => changePage(0),
+      );
     }
   }
 
@@ -144,7 +148,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       ];
     return ScrollablePositionedList.builder(
       padding: EdgeInsets.zero,
-      minCacheExtent: 102400,
+      //minCacheExtent: 102400,
       addRepaintBoundaries: true,
       itemPositionsListener: _itemPositionsListener,
       itemScrollController: _itemScrollController,
