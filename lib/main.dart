@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/page/root.dart';
+import 'package:portfolio/theme.dart';
 
 void main() {
   runApp(MyPortfolio());
@@ -11,10 +12,7 @@ class MyPortfolio extends StatelessWidget {
     return MaterialApp(
       // debugShowCheckedModeBanner: false,
       title: "Jetsadakorn's Portfolio",
-      theme: ThemeData(
-        fontFamily: "Raleway",
-        primarySwatch: Colors.blue,
-      ),
+      theme: WebTheme.themeData,
       home: Root()
     );
   }
