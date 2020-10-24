@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-
+import 'package:portfolio/theme.dart';
 import 'package:portfolio/page/tabs/tab_contact.dart';
 import 'package:portfolio/page/tabs/tab_home.dart';
 import 'package:portfolio/page/tabs/tab_works.dart';
@@ -20,8 +19,6 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   ];
 
   TabController _tabController;
-  ItemScrollController _itemScrollController;
-  ItemPositionsListener _itemPositionsListener;
 
   FloatingActionButton scrollUpButton;
 
@@ -29,10 +26,6 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: tabs.length);
-    _itemScrollController = ItemScrollController();
-    _itemPositionsListener = ItemPositionsListener.create();
-    _tabController.addListener(onScroll);
-    _itemPositionsListener.itemPositions.addListener(onScroll);
     scrollUpButton = null;
   }
 
@@ -42,61 +35,12 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  void changePage(int index) {
-    _itemScrollController.scrollTo(
-      index: index,
-      duration: Duration(milliseconds: 500),
-      curve: Curves.easeInOutQuart
-    );
-  }
-
-  void changeTab(int index) {
-    _tabController.animateTo(
-      index,
-      duration: Duration(milliseconds: 500),
-      curve: Curves.easeInOutQuart
-    );
-  }
-
-  void onScroll() {
-    ItemPosition data = _itemPositionsListener.itemPositions.value.first;
-    if (!_tabController.indexIsChanging) {
-      if (data.index == _tabController.index) {
-        if (data.itemTrailingEdge < 0.1) {
-          print("[0] Call changeTab${data.index+1} at TabIndex: ${_tabController.index}, PageIndex: ${data.index}, LeadingEdge: ${data.itemLeadingEdge}, TrailingEnd: ${data.itemTrailingEdge}");
-          changeTab(data.index+1);
-        } else {
-          // changeTab(data.index);
-        }
-      } else {
-        if (data.itemTrailingEdge > 0.1) {
-          print("[1] Call changeTab${data.index} at TabIndex: ${_tabController.index}, PageIndex: ${data.index}, LeadingEdge: ${data.itemLeadingEdge}, TrailingEnd: ${data.itemTrailingEdge}");
-          changeTab(data.index);
-        } else {
-          // changeTab(data.index+1);
-        }
-      }
-    }
-
-    if (data.index == 0 && data.itemTrailingEdge > 0.8) {
-      scrollUpButton = null;
-    } else {
-      scrollUpButton = FloatingActionButton.extended(
-        icon: Icon(Icons.arrow_upward_rounded),
-        label: Text("Scroll Up"),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        onPressed: () => changePage(0),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        toolbarHeight: 64,
+        toolbarHeight: WebTheme.appBarHeight,
         flexibleSpace: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -112,10 +56,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
           ],
         ),
       ),
-      body: Scrollbar(
-        radius: Radius.circular(2),
-        child: pageList(),
-      ),
+      body: tabView(),
       floatingActionButton: scrollUpButton,
     );
   }
@@ -135,27 +76,19 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       ),
       isScrollable: true,
       controller: _tabController,
-      tabs: tabs,
-      onTap: changePage,
+      tabs: tabs
     );
   }
 
-  Widget pageList() {
+  Widget tabView() {
     final contents = [
         HomeTab(),
         WorksTab(),
         ContactTab()
       ];
-    return ScrollablePositionedList.builder(
-      padding: EdgeInsets.zero,
-      //minCacheExtent: 102400,
-      addRepaintBoundaries: true,
-      itemPositionsListener: _itemPositionsListener,
-      itemScrollController: _itemScrollController,
-      itemCount: contents.length,
-      itemBuilder: (context, index) {
-        return contents[index];
-      },
+    return TabBarView(
+      controller: _tabController,
+      children: contents,
     );
   }
 }
