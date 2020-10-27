@@ -25,7 +25,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: tabs.length);
+    _tabController = TabController(vsync: this, length: tabs.length, initialIndex: 1);
     scrollUpButton = null;
   }
 
@@ -39,6 +39,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 4,
         backgroundColor: Colors.white,
         toolbarHeight: WebTheme.appBarHeight,
         flexibleSpace: Column(
@@ -88,6 +89,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       ];
     return TabBarView(
       controller: _tabController,
+      physics: NeverScrollableScrollPhysics(),
       children: contents,
     );
   }
