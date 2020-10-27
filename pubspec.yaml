@@ -24,12 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
   bubble_tab_indicator: ^0.1.4
-  scrollable_positioned_list: ^0.1.7
-  # scroll_to_index: ^1.0.6
+  fluentui_system_icons: ^1.1.54
+  google_fonts: ^1.1.1
+  url_launcher: ^5.7.8
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  # cupertino_icons: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -93,48 +91,3 @@ flutter:
         - asset: assets/fonts/JetBrainsMono/JetBrainsMono-ExtraBold-Italic.ttf
           weight: 800
           style: italic  
-    - family: Raleway
-      fonts:
-        - asset: assets/fonts/Raleway/Raleway-Thin.ttf
-          weight: 100
-        - asset: assets/fonts/Raleway/Raleway-ThinItalic.ttf
-          weight: 100
-          style: italic
-        - asset: assets/fonts/Raleway/Raleway-ExtraLight.ttf
-          weight: 200
-        - asset: assets/fonts/Raleway/Raleway-ExtraLightItalic.ttf
-          weight: 200
-          style: italic
-        - asset: assets/fonts/Raleway/Raleway-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Raleway/Raleway-LightItalic.ttf
-          weight: 300
-          style: italic
-        - asset: assets/fonts/Raleway/Raleway-Regular.ttf
-        - asset: assets/fonts/Raleway/Raleway-Italic.ttf
-          style: italic
-        - asset: assets/fonts/Raleway/Raleway-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Raleway/Raleway-MediumItalic.ttf
-          weight: 500
-          style: italic
-        - asset: assets/fonts/Raleway/Raleway-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Raleway/Raleway-SemiBoldItalic.ttf
-          weight: 600
-          style: italic
-        - asset: assets/fonts/Raleway/Raleway-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Raleway/Raleway-BoldItalic.ttf
-          weight: 700
-          style: italic
-        - asset: assets/fonts/Raleway/Raleway-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/Raleway/Raleway-ExtraBoldItalic.ttf
-          weight: 800
-          style: italic
-        - asset: assets/fonts/Raleway/Raleway-Black.ttf
-          weight: 900
-        - asset: assets/fonts/Raleway/Raleway-BlackItalic.ttf
-          weight: 900
-          style: italic
