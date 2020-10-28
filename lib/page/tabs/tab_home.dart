@@ -26,7 +26,7 @@ class HomeTab extends StatelessWidget {
             children: [
               Text(
                 "Jetsadakorn Maliwan".toUpperCase(),
-                style: GoogleFonts.raleway(color: codeBlack, fontSize: titleFontSize, fontWeight: FontWeight.w700),
+                style: GoogleFonts.lato(color: codeBlack, fontSize: titleFontSize, fontWeight: FontWeight.w700),
               ),
               Text(
                 "\n// Mobile Apps Developer\n// Flutter\n",

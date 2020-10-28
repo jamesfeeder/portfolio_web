@@ -6,7 +6,7 @@ class WebTheme {
   static double appBarHeight = 88;
   
   static ThemeData themeData = ThemeData(
-    textTheme: GoogleFonts.ralewayTextTheme(),
+    textTheme: GoogleFonts.latoTextTheme(),
     cardTheme: CardTheme(
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))

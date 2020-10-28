@@ -66,9 +66,9 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
     return TabBar(
       labelPadding: EdgeInsets.fromLTRB(16, 4, 16, 0),
       labelColor: Colors.white,
-      labelStyle: TextStyle(fontFamily: "Raleway", fontSize: 16, fontWeight: FontWeight.w500),
+      labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       unselectedLabelColor: Colors.black,
-      unselectedLabelStyle: TextStyle(fontFamily: "Raleway", fontSize: 16, fontWeight: FontWeight.w500),
+      unselectedLabelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       indicator: BubbleTabIndicator(
         indicatorHeight: 38,
         indicatorRadius: 8,
