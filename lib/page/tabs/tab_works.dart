@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/theme.dart';
+import 'package:portfolio/widgets/work_grid_item.dart';
 
 class WorksTab extends StatelessWidget {
   @override
@@ -21,51 +22,16 @@ class WorksTab extends StatelessWidget {
           shrinkWrap: true,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          childAspectRatio: 16/9,
+          childAspectRatio: 3/2,
           crossAxisCount: MediaQuery.of(context).size.width~/400,
           children: [
-            RaisedButton(
-              onPressed: () {},
-              color: Colors.transparent,
-              disabledColor: Colors.grey.withOpacity(0.25),
-              hoverColor: Colors.grey[300].withOpacity(0.1),
-              highlightColor: Colors.blue[600].withOpacity(0.25),
-              splashColor: Colors.blue[300].withOpacity(0.1),
-              elevation: 1,
-              disabledElevation: 0,
-              hoverElevation: 8,
-              focusElevation: 4,
-              highlightElevation: 4,
-              child: Card(margin: EdgeInsets.zero,),
-            ),
-            RaisedButton(
-              onPressed: () {},
-              color: Colors.transparent,
-              disabledColor: Colors.grey.withOpacity(0.25),
-              hoverColor: Colors.grey[300].withOpacity(0.1),
-              highlightColor: Colors.blue[600].withOpacity(0.25),
-              splashColor: Colors.blue[300].withOpacity(0.1),
-              elevation: 1,
-              disabledElevation: 0,
-              hoverElevation: 8,
-              focusElevation: 4,
-              highlightElevation: 4,
-              child: Card(margin: EdgeInsets.zero,),
-            ),
-            RaisedButton(
-              onPressed: () {},
-              color: Colors.transparent,
-              disabledColor: Colors.grey.withOpacity(0.25),
-              hoverColor: Colors.grey[300].withOpacity(0.1),
-              highlightColor: Colors.blue[600].withOpacity(0.25),
-              splashColor: Colors.blue[300].withOpacity(0.1),
-              elevation: 1,
-              disabledElevation: 0,
-              hoverElevation: 8,
-              focusElevation: 4,
-              highlightElevation: 4,
-              child: Card(margin: EdgeInsets.zero,),
-            )
+            WorkGridItem(),
+            WorkGridItem(),
+            WorkGridItem(),
+            WorkGridItem(),
+            WorkGridItem(),
+            WorkGridItem(),
+            WorkGridItem()
           ],
         )
       ],
