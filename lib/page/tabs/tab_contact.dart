@@ -35,7 +35,7 @@ class ContactTab extends StatelessWidget {
             height: MediaQuery.of(context).size.height-WebTheme.appBarHeight,
             child: Center(
               child: Card(
-                elevation: 16,
+                elevation: 8,
                 margin: WebTheme.defaultPagePadding,
                 child: Padding(
                   padding: WebTheme.defaultItemPadding,
