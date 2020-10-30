@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class WebTheme {
 
-  static double appBarHeight = 88;
+  static double appBarHeight = 56; // 88
   
   static ThemeData themeData = ThemeData(
     textTheme: GoogleFonts.latoTextTheme(),
@@ -17,6 +17,6 @@ class WebTheme {
     )
   );
 
-  static EdgeInsets defaultPagePadding = EdgeInsets.symmetric(horizontal: 88, vertical: 48);
+  static EdgeInsets defaultPagePadding = EdgeInsets.symmetric(horizontal: 48, vertical: 48);
   static EdgeInsets defaultItemPadding = EdgeInsets.all(16);
 }

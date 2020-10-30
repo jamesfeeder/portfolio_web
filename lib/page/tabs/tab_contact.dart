@@ -23,7 +23,7 @@ class ContactTab extends StatelessWidget {
                 child: Text(
                   "Contact".toUpperCase(),
                   style: TextStyle(
-                    fontSize: 84,
+                    fontSize: 48,
                     fontWeight: FontWeight.w700
                   ),
                 ),
