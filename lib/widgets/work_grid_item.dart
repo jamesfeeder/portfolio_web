@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/models/work.dart';
+import 'package:portfolio/page/works/detail_page.dart';
+import 'package:portfolio/theme.dart';
 
 class WorkGridItem extends StatefulWidget {
+  
+  final Work data;
+
+  WorkGridItem({@required this.data});
+
   @override
   _WorkGridItemState createState() => _WorkGridItemState();
 }
 
 class _WorkGridItemState extends State<WorkGridItem> {
-
-  // Card Var
-  double _elevation = 1;
 
   // Overlay Var
   double _opacity = 0;
@@ -19,12 +24,11 @@ class _WorkGridItemState extends State<WorkGridItem> {
   @override
   Widget build(BuildContext context) {
     int _gridCol = MediaQuery.of(context).size.width~/400;
-    double _cardWidth = (MediaQuery.of(context).size.width-(88*2)+((_gridCol-1)*16))/_gridCol;
-    double _cardHeight = _cardWidth*(2/3);
+    double _cardWidth = (MediaQuery.of(context).size.width-(48*2)+((_gridCol-1)*16))/_gridCol;
+    double _cardHeight = _cardWidth*(4/5);
     return MouseRegion(
       onEnter: (value) {
         setState(() {
-          _elevation = 8;
           _opacity = 1;
           _transDuration = 0;
           _left = value.localPosition.dx+5;
@@ -33,7 +37,6 @@ class _WorkGridItemState extends State<WorkGridItem> {
       },
       onExit: (value) {
         setState(() {
-          _elevation = 1;
           _opacity = 0;
         });
       },
@@ -53,79 +56,79 @@ class _WorkGridItemState extends State<WorkGridItem> {
           }
         });
       },
-      child: card()
+      child: card(_cardWidth,_cardHeight)
     );
   }
 
-  Widget card() {
+  Widget card(double cardWidth,double cardHeight) {
     return Stack(
       clipBehavior: Clip.none,
       fit: StackFit.expand,
       alignment: AlignmentDirectional.center,
       children: [
-        Card(
+        RaisedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => WorkDetailPage(data: widget.data)
+              )
+            );
+          },
+          color: Colors.white,
           clipBehavior: Clip.hardEdge,
-          margin: EdgeInsets.zero,
-          elevation: _elevation,
+          padding: EdgeInsets.zero,
+          elevation: 1,
+          disabledElevation: 0,
+          focusElevation: 4,
+          highlightElevation: 4,
+          hoverElevation: 8,
           child: Stack(
             clipBehavior: Clip.none,
-            alignment: AlignmentDirectional.bottomCenter,
+            alignment: AlignmentDirectional.topCenter,
             children: [
               Container(
-                color: Colors.blue,
-                width: double.infinity,
-                height: double.infinity,
+                width: cardWidth,
+                height: cardHeight*0.6,
+                child: Image.asset(
+                  widget.data.cardThumbnailUrl,
+                  alignment: widget.data.cardThumbnailAlignment == null 
+                    ? Alignment.center 
+                    : widget.data.cardThumbnailAlignment,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
-              Container(
-                color: Colors.white,
-                width: double.infinity,
-                height: 120,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Quicknote",
-                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(128),
-                                  color: Colors.grey[200]
-                                ),
-                                margin: EdgeInsets.only(left: 4),
-                                padding: EdgeInsets.all(8),
-                                child: Text("Progressive Web Apps", style: TextStyle(fontSize: 12),),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(128),
-                                  color: Colors.grey[200]
-                                ),
-                                margin: EdgeInsets.only(left: 4),
-                                padding: EdgeInsets.all(8),
-                                child: Text("Mobile Apps", style: TextStyle(fontSize: 12),),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        "An application for Taking Note. Cloud Save and Markdown Text Styling Support.",
-                        style: TextStyle(fontSize: 16),
-                        overflow: TextOverflow.fade,
-                        softWrap: true,
-                      ),
-                    ],
-                  )
+              Align(
+                alignment: AlignmentDirectional.bottomCenter,
+                child: Container(
+                  color: Colors.white,
+                  width: cardWidth,
+                  height: cardHeight*0.4,
+                  child: Padding(
+                    padding: WebTheme.defaultItemPadding,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              widget.data.title,
+                              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+                            ),
+                            Row(
+                              children: widget.data.category.map((e) => categoryChip(e)).toList(),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          widget.data.description,
+                          style: TextStyle(fontSize: 16),
+                          overflow: TextOverflow.fade,
+                          softWrap: true,
+                        ),
+                      ],
+                    )
+                  ),
                 ),
               ),
             ],
@@ -152,6 +155,19 @@ class _WorkGridItemState extends State<WorkGridItem> {
           ),
         )
       ],
+    );
+  }
+
+  Widget categoryChip(String category) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(128),
+        color: Colors.grey[200]
+      ),
+      margin: EdgeInsets.only(left: 4),
+      padding: EdgeInsets.all(8),
+      child: Text(category, style: TextStyle(fontSize: 12),),
     );
   }
 }
