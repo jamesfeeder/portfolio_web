@@ -3,19 +3,27 @@ import 'package:flutter/material.dart';
 class Work {
   String title;
   String description;
-  String category;
+  String longDescription;
+  List<String> category;
   List<String> technologies;
-  String thumbnailUrl;
+  String cardThumbnailUrl;
+  Alignment cardThumbnailAlignment;
+  String projectIconUrl;
   List<String> galleryUrl;
   String projectRepoUrl;
+  Color projectColor;
 
   Work({
     @required this.title,
-    this.description,
+    @required this.description,
+    this.longDescription,
     @required this.category,
     this.technologies,
-    @required this.galleryUrl,
-    @required this.thumbnailUrl,
-    this.projectRepoUrl
+    @required this.projectIconUrl,
+    @required this.cardThumbnailUrl,
+    this.cardThumbnailAlignment,
+    this.galleryUrl,
+    this.projectRepoUrl,
+    this.projectColor
   });
 }
