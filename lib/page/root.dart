@@ -43,7 +43,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
         backgroundColor: Colors.white,
         toolbarHeight: WebTheme.appBarHeight,
         flexibleSpace: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
