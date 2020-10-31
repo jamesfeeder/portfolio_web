@@ -47,7 +47,7 @@ class ContactTab extends StatelessWidget {
                         child: ContactListItem(
                           title: "Email",
                           contact: "jatsadakorn555@gmail.com",
-                          icon: FluentIcons.send_20_filled,
+                          icon: FluentIcons.send_24_filled,
                           tooltip: "Send Email",
                           backgroundColor: Colors.green,
                           foregroundColor: Colors.white,
@@ -62,7 +62,7 @@ class ContactTab extends StatelessWidget {
                         child: ContactListItem(
                           title: "GitHub",
                           contact: "github.com/jamesfeeder",
-                          icon: FluentIcons.open_20_filled,
+                          icon: FluentIcons.open_24_filled,
                           tooltip: "Go to GitHub",
                           backgroundColor: Colors.black,
                           foregroundColor: Colors.white,
@@ -77,7 +77,7 @@ class ContactTab extends StatelessWidget {
                         child: ContactListItem(
                           title: "Facebook",
                           contact: "facebook.com/jf86555",
-                          icon: FluentIcons.open_20_filled,
+                          icon: FluentIcons.open_24_filled,
                           tooltip: "Go to Facebook",
                           backgroundColor: Color(0xff1778F2),
                           foregroundColor: Colors.white,

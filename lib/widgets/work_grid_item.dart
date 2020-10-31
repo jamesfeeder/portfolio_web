@@ -24,7 +24,7 @@ class _WorkGridItemState extends State<WorkGridItem> {
   @override
   Widget build(BuildContext context) {
     int _gridCol = MediaQuery.of(context).size.width~/400;
-    double _cardWidth = (MediaQuery.of(context).size.width-(48*2)+((_gridCol-1)*16))/_gridCol;
+    double _cardWidth = (MediaQuery.of(context).size.width-(WebTheme.horizontalPadding*2)+((_gridCol-1)*16))/_gridCol;
     double _cardHeight = _cardWidth*(4/5);
     return MouseRegion(
       onEnter: (value) {
@@ -67,6 +67,7 @@ class _WorkGridItemState extends State<WorkGridItem> {
       alignment: AlignmentDirectional.center,
       children: [
         RaisedButton(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(WebTheme.cardBorderRadiusValue)),
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -147,9 +148,11 @@ class _WorkGridItemState extends State<WorkGridItem> {
             child: Card(
               margin: EdgeInsets.all(8),
               elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("Click for more detail"),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Click for more detail"),
+                ),
               ),
             )
           ),
