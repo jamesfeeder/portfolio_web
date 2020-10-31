@@ -5,16 +5,20 @@ class PortfolioData {
   static List<Work> workList = [
   //NOTE: Quicknote Data 
     Work(
-      title: "Quicknote",
+      title: "Quicknote!",
       category: [
         "Mobile",
-        "PWAs"
+        "PWA"
       ],
-      description: "An application for Taking Note. Cloud Save and Markdown Text Styling Support.",
+      description: "An application for Taking Note, Cloud Save and Markdown Text Styling Support.",
       //longDescription: "",
-      technologies: ["Flutter", "Flutter Web", "Firebase"],
+      technology: [
+        "Flutter",
+        "Flutter Web",
+        "Cloud Firestore"
+      ],
       projectRepoUrl: "https://github.com/jamesfeeder/quicknote_private",
-      projectColor: Colors.amber,
+      projectColor: Colors.amber[100],
       projectIconUrl: "assets/quicknote/00.png",
       cardThumbnailUrl: "assets/quicknote/02.jpg",
       cardThumbnailAlignment: Alignment.topCenter,
@@ -26,4 +30,11 @@ class PortfolioData {
       ],
     ),
   ];
+}
+
+class CategoryData {
+  static Map<String,String> categoryList = {
+    "Mobile":"Mobile Application",
+    "PWA":"Progressive Web Application"
+  };
 }
