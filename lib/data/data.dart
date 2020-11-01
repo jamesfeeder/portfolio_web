@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/models/work.dart';
 
+class CategoryData {
+  static Map<String,String> categoryList = {
+    "Mobile":"Mobile Application",
+    "PWA"   :"Progressive Web Application"
+  };
+}
+
 class PortfolioData {
   static List<Work> workList = [
   //NOTE: Quicknote Data 
@@ -30,11 +37,4 @@ class PortfolioData {
       ],
     ),
   ];
-}
-
-class CategoryData {
-  static Map<String,String> categoryList = {
-    "Mobile":"Mobile Application",
-    "PWA":"Progressive Web Application"
-  };
 }
