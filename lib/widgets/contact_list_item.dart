@@ -23,40 +23,44 @@ class ContactListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Text(
-          title,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)
+        SizedBox(
+          height: 56,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Text(
+                title,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)
+              ),
+              Text(
+                contact,
+                style:GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Text(
-              contact,
-              style:GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(width: 16,),
-            FloatingActionButton(
-              onPressed: onPressed,
-              tooltip: tooltip,
-              mini: true,
-              elevation: 0,
-              hoverElevation: 4,
-              focusElevation: 2,
-              highlightElevation: 2,
-              backgroundColor: backgroundColor,
-              foregroundColor: foregroundColor,
-              splashColor: foregroundColor.withOpacity(0.5),
-              hoverColor: foregroundColor.withOpacity(0),
-              focusColor: foregroundColor.withOpacity(0.15),
-              child: Icon(icon),
-            )
-          ],
+        SizedBox(width: 16,),
+        FloatingActionButton(
+          onPressed: onPressed,
+          tooltip: tooltip,
+          //mini: true,
+          elevation: 0,
+          hoverElevation: 4,
+          focusElevation: 2,
+          highlightElevation: 2,
+          backgroundColor: backgroundColor,
+          foregroundColor: foregroundColor,
+          splashColor: foregroundColor.withOpacity(0.5),
+          hoverColor: foregroundColor.withOpacity(0),
+          focusColor: foregroundColor.withOpacity(0.15),
+          child: Icon(icon),
         )
       ],
     );

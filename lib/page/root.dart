@@ -43,14 +43,14 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
         backgroundColor: Colors.white,
         toolbarHeight: WebTheme.appBarHeight,
         flexibleSpace: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 navBar(),
-                SizedBox(width: 48,)
+                SizedBox(width: WebTheme.horizontalPadding,)
               ],
             ),
             SizedBox(height: 0,)
@@ -71,7 +71,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
       unselectedLabelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       indicator: BubbleTabIndicator(
         indicatorHeight: 38,
-        indicatorRadius: 8,
+        indicatorRadius: 100,
         indicatorColor: Colors.black,
         padding: EdgeInsets.zero
       ),
