@@ -44,15 +44,15 @@ class _WorkGridItemState extends State<WorkGridItem> {
         // print("${value.localPosition}, $_cardWidth, $_cardHeight");
         setState(() {
           _transDuration = 500;
-          if (value.localPosition.dx+160+16+4 < _cardWidth) {
+          if (value.localPosition.dx+160+24+4 < _cardWidth) {
             _left = value.localPosition.dx+5;
           } else {
-            _left = _cardWidth-160-16-4;
+            _left = _cardWidth-160-24-4;
           }
-          if (value.localPosition.dy+48+16 < _cardHeight) {
+          if (value.localPosition.dy+48+24 < _cardHeight) {
             _top = value.localPosition.dy+5;
           } else {
-            _top = _cardHeight-48-16;
+            _top = _cardHeight-48-24;
           }
         });
       },
@@ -76,7 +76,7 @@ class _WorkGridItemState extends State<WorkGridItem> {
             );
           },
           color: Colors.white,
-          clipBehavior: Clip.hardEdge,
+          clipBehavior: Clip.antiAlias,
           padding: EdgeInsets.zero,
           elevation: 1,
           disabledElevation: 0,

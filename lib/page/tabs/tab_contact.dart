@@ -56,7 +56,7 @@ class ContactTab extends StatelessWidget {
                           },
                         ),
                       ),
-                      SizedBox(height: 16,),
+                      SizedBox(height: 24,),
                       Container(
                         width: 360,
                         child: ContactListItem(
@@ -71,7 +71,7 @@ class ContactTab extends StatelessWidget {
                           },
                         ),
                       ),
-                      SizedBox(height: 16,),
+                      SizedBox(height: 24,),
                       Container(
                         width: 360,
                         child: ContactListItem(

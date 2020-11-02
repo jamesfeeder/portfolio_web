@@ -18,7 +18,7 @@ class HomeTab extends StatelessWidget {
       alignment: AlignmentDirectional.centerStart,
       child: FittedBox(
         child: Container(
-          height: MediaQuery.of(context).size.height - 64,
+          height: MediaQuery.of(context).size.height - WebTheme.appBarHeight,
           child: Padding(
             padding: WebTheme.defaultPagePadding,
             child: RepaintBoundary(
