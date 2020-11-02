@@ -18,7 +18,13 @@ class PortfolioData {
         "PWA"
       ],
       description: "An application for Taking Note, Cloud Save and Markdown Text Styling Support.",
-      //longDescription: "",
+      longDescription: """
+Quicknote is application for Taking Note.
+
+Quicknote is saving notes in Firebase Cloud Firestore to Make the notes available in anyplace,
+
+and supported Markdown Text formatting for styling and organize the content.
+      """,
       technology: [
         "Flutter",
         "Flutter Web",
@@ -33,7 +39,7 @@ class PortfolioData {
         "assets/quicknote/01.jpg",
         "assets/quicknote/02.jpg",
         "assets/quicknote/03.jpg",
-        "assets/quicknote/04.jpg",
+        "assets/quicknote/04.png",
       ],
     ),
   ];
