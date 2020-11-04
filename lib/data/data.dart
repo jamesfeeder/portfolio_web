@@ -21,7 +21,7 @@ class PortfolioData {
       longDescription: """
 Quicknote is application for Taking Note.
 
-Quicknote is saving notes in Firebase Cloud Firestore to Make the notes available in anyplace,
+Quicknote is saving notes in Firebase Cloud Firestore to make the notes available in anyplace,
 
 and supported Markdown Text formatting for styling and organize the content.
       """,
@@ -36,6 +36,9 @@ and supported Markdown Text formatting for styling and organize the content.
       cardThumbnailUrl: "assets/quicknote/02.jpg",
       cardThumbnailAlignment: Alignment.topCenter,
       galleryUrl: [
+        "assets/quicknote/01.jpg",
+        "assets/quicknote/02.jpg",
+        "assets/quicknote/03.jpg",
         "assets/quicknote/01.jpg",
         "assets/quicknote/02.jpg",
         "assets/quicknote/03.jpg",
