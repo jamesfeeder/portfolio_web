@@ -1,11 +1,11 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:indexed_list_view/indexed_list_view.dart';
 import 'package:markdown_widget/markdown_generator.dart';
 import 'package:portfolio/data/data.dart';
 import 'package:portfolio/models/work.dart';
 import 'package:portfolio/theme.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WorkDetailPage extends StatefulWidget {
@@ -22,6 +22,8 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
 
   Color _primaryColor;
   Color _secondaryColor;
+
+  final IndexedScrollController _scrollController = IndexedScrollController();
 
   @override
   void initState() {
@@ -41,6 +43,33 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
       }
     }
     super.initState();
+  }
+
+  void onScrollGallery() {
+    // var value = itemPositionsListener.itemPositions.value.toList();
+    // print(value);
+    // _currentCenterImg = value.lastWhere((element) => element.itemLeadingEdge < 0.5).index;
+    // var firstItem = value.firstWhere((element) => element.itemLeadingEdge <= 0.06 ,orElse: () => null);
+    // if (firstItem != null && firstItem.index == 0) {
+    //   _isOnStartPoint = true;
+    // } else {
+    //   _isOnStartPoint = false;
+    // }
+    // print("isOnStartPoint: $_isOnStartPoint, currentCenterImg: $_currentCenterImg");
+  }
+
+  void nextImg() {
+    //onScrollGallery();
+    // if (_isOnStartPoint) {
+    //   itemScrollController.jumpTo(index: _currentCenterImg);
+    //   itemScrollController.jumpTo(index: 0);
+    // }
+    // itemScrollController.scrollTo(index: _currentCenterImg+1, duration: Duration(milliseconds: 200));
+  }
+
+  void prevImg() {
+    //onScrollGallery();
+    // itemScrollController.scrollTo(index: _currentCenterImg-1, duration: Duration(milliseconds: 200));
   }
 
   @override
@@ -132,9 +161,9 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
     return ListView(
       children: [
         header(),
-        SizedBox(height: 24),
+        SizedBox(height: 16),
         description(),
-        SizedBox(height: 24),
+        SizedBox(height: 16),
         gallery()
       ],
     );
@@ -149,11 +178,11 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            clipBehavior: Clip.hardEdge,
+            clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(WebTheme.projectIconBorderRadiusValue)
             ),
-            margin: EdgeInsets.only(right: 24),
+            margin: EdgeInsets.only(right: 16),
             height: 192,
             width: 192,
             child: Image.asset(widget.data.projectIconUrl),
@@ -325,23 +354,53 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
           child: Text("Gallery", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
         ),
         SizedBox(height: 16),
-        Container(
-          height: (MediaQuery.of(context).size.height*0.7).roundToDouble(),
-          child: ScrollablePositionedList.separated(
-            padding: WebTheme.defaultPagePadding.subtract(EdgeInsets.only(top: WebTheme.defaultPagePadding.top)),
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) {
-              return SizedBox(width: 8);
-            },
-            itemCount: widget.data.galleryUrl.length,
-            itemBuilder: (context, index) {
-              return Card(
-                elevation: 1,
-                margin: EdgeInsets.zero,
-                child: Image.asset(widget.data.galleryUrl[index]),
-              );
-            },
-          ),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              height: (MediaQuery.of(context).size.height*0.7).roundToDouble(),
+              child: IndexedListView.separated(
+                controller: _scrollController,
+                padding: WebTheme.defaultPagePadding.subtract(EdgeInsets.only(top: WebTheme.defaultPagePadding.top)),
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (context, index) {
+                  return SizedBox(width: 16);
+                },
+                minItemCount: widget.data.galleryUrl.length,
+                maxItemCount: widget.data.galleryUrl.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 1,
+                    margin: EdgeInsets.zero,
+                    child: Image.asset(widget.data.galleryUrl[index]),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: WebTheme.defaultPagePadding.subtract(EdgeInsets.only(top: WebTheme.defaultPagePadding.top)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  FlatButton(
+                    onPressed: prevImg,
+                    color: Colors.black87,
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(32),
+                    child: Icon(FluentIcons.chevron_left_48_filled, color: Colors.white),
+                  ),
+                  FlatButton(
+                    onPressed: nextImg,
+                    color: Colors.black87,
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(32),
+                    child: Icon(FluentIcons.chevron_right_48_filled, color: Colors.white),
+                  )
+                ],
+              ),
+            )
+          ],
         )
       ],
     );
