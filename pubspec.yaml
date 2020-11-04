@@ -28,8 +28,7 @@ dependencies:
   google_fonts: ^1.1.1
   url_launcher: ^5.7.8
   markdown_widget: ^1.2.5
-  carousel_slider: ^2.3.1
-  scrollable_positioned_list: ^0.1.8
+  indexed_list_view: ^1.1.5
 
 
 dev_dependencies:
