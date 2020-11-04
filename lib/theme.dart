@@ -28,7 +28,7 @@ class WebTheme {
 
   static double horizontalPadding = 88;
   static EdgeInsets defaultPagePadding = EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 48);
-  static EdgeInsets defaultItemPadding = EdgeInsets.all(24);
+  static EdgeInsets defaultItemPadding = EdgeInsets.all(16);
 
   static StyleConfig markdownStyle = StyleConfig(
 
