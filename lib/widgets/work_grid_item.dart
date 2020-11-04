@@ -84,7 +84,7 @@ class _WorkGridItemState extends State<WorkGridItem> {
           highlightElevation: 4,
           hoverElevation: 8,
           child: Stack(
-            clipBehavior: Clip.none,
+            clipBehavior: Clip.antiAlias,
             alignment: AlignmentDirectional.topCenter,
             children: [
               Container(
