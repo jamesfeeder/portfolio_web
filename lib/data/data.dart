@@ -55,6 +55,9 @@ This Platform provided 2 applications
 - SABISU Store (Store Side)
 
 #### Feature
+- Find the shop that user want to use or find new interesting ones.
+- Book service from mobile phone.
+- Read Promotion and Announcement from the shop.
       ''',
       category: ["Mobile"],
       technology: [
