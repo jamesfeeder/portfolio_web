@@ -329,6 +329,8 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
           child: Text("Gallery", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
         ),
         GridView.count(
+          addRepaintBoundaries: true,
+          addSemanticIndexes: true,
           padding: WebTheme.defaultPagePadding.copyWith(top: 16),
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
@@ -337,6 +339,7 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
           childAspectRatio: 5/5,
           crossAxisCount: MediaQuery.of(context).size.width~/320,
           children: widget.data.galleryUrl.map((e) => GalleryGridItem(
+            key: ValueKey(e),
             urls: widget.data.galleryUrl,
             index: widget.data.galleryUrl.indexOf(e))).toList(),
         )

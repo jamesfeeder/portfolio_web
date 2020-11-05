@@ -5,7 +5,7 @@ import 'package:portfolio/widgets/work_grid_item.dart';
 
 class WorksTab extends StatelessWidget {
 
-  final List<Widget> _workList = PortfolioData.workList.map((e) => WorkGridItem(data: e,)).toList();
+  final List<Widget> _workList = PortfolioData.workList.map((e) => WorkGridItem(key: ValueKey(e),data: e,)).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,8 @@ class WorksTab extends StatelessWidget {
           ),
         ),
         GridView.count(
+          addSemanticIndexes: true,
+          addRepaintBoundaries: true,
           padding: WebTheme.defaultPagePadding.copyWith(top: 16),
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
