@@ -52,6 +52,7 @@ class WebTheme {
       h5: TextStyle(fontSize: 18),
       h6: TextStyle(fontSize: 16),
       commonStyle: TextStyle(fontWeight: FontWeight.w700),
+      showDivider: false
     ),
     // hrConfig: HrConfig(),
     olConfig: OlConfig(
