@@ -1,11 +1,11 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:indexed_list_view/indexed_list_view.dart';
 import 'package:markdown_widget/markdown_generator.dart';
 import 'package:portfolio/data/data.dart';
 import 'package:portfolio/models/work.dart';
 import 'package:portfolio/theme.dart';
+import 'package:portfolio/widgets/gallery_grid_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WorkDetailPage extends StatefulWidget {
@@ -22,8 +22,6 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
 
   Color _primaryColor;
   Color _secondaryColor;
-
-  final IndexedScrollController _scrollController = IndexedScrollController();
 
   @override
   void initState() {
@@ -43,33 +41,6 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
       }
     }
     super.initState();
-  }
-
-  void onScrollGallery() {
-    // var value = itemPositionsListener.itemPositions.value.toList();
-    // print(value);
-    // _currentCenterImg = value.lastWhere((element) => element.itemLeadingEdge < 0.5).index;
-    // var firstItem = value.firstWhere((element) => element.itemLeadingEdge <= 0.06 ,orElse: () => null);
-    // if (firstItem != null && firstItem.index == 0) {
-    //   _isOnStartPoint = true;
-    // } else {
-    //   _isOnStartPoint = false;
-    // }
-    // print("isOnStartPoint: $_isOnStartPoint, currentCenterImg: $_currentCenterImg");
-  }
-
-  void nextImg() {
-    //onScrollGallery();
-    // if (_isOnStartPoint) {
-    //   itemScrollController.jumpTo(index: _currentCenterImg);
-    //   itemScrollController.jumpTo(index: 0);
-    // }
-    // itemScrollController.scrollTo(index: _currentCenterImg+1, duration: Duration(milliseconds: 200));
-  }
-
-  void prevImg() {
-    //onScrollGallery();
-    // itemScrollController.scrollTo(index: _currentCenterImg-1, duration: Duration(milliseconds: 200));
   }
 
   @override
@@ -132,7 +103,7 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
                           "Back",
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.w400, 
+                            fontWeight: FontWeight.w700, 
                             height: 1,
                             color: _primaryColor
                           ),
@@ -151,7 +122,7 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
               )
             ],
           ),
-          SizedBox(height: 0)
+          SizedBox(height: 4)
         ],
       )
     );
@@ -177,15 +148,19 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(WebTheme.projectIconBorderRadiusValue)
+          Card(
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(WebTheme.projectIconBorderRadiusValue),
+              side: BorderSide(width: 1.5, color: Colors.black12)
             ),
+            clipBehavior: Clip.antiAlias,
             margin: EdgeInsets.only(right: 16),
-            height: 192,
-            width: 192,
-            child: Image.asset(widget.data.projectIconUrl),
+            child: Container(
+              height: 192,
+              width: 192,
+              child: Image.asset(widget.data.projectIconUrl),
+            ),
           ),
           Expanded(
             child: SizedBox(
@@ -298,7 +273,7 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
                             "Visit Project Repository",
                             style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w400, 
+                              fontWeight: FontWeight.w700, 
                               height: 1.0,
                               color: _primaryColor,
                             ),
@@ -353,54 +328,17 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
           padding: WebTheme.defaultPagePadding.subtract(EdgeInsets.symmetric(vertical: WebTheme.defaultPagePadding.top)),
           child: Text("Gallery", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
         ),
-        SizedBox(height: 16),
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              height: (MediaQuery.of(context).size.height*0.7).roundToDouble(),
-              child: IndexedListView.separated(
-                controller: _scrollController,
-                padding: WebTheme.defaultPagePadding.subtract(EdgeInsets.only(top: WebTheme.defaultPagePadding.top)),
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) {
-                  return SizedBox(width: 16);
-                },
-                minItemCount: widget.data.galleryUrl.length,
-                maxItemCount: widget.data.galleryUrl.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 1,
-                    margin: EdgeInsets.zero,
-                    child: Image.asset(widget.data.galleryUrl[index]),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: WebTheme.defaultPagePadding.subtract(EdgeInsets.only(top: WebTheme.defaultPagePadding.top)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  FlatButton(
-                    onPressed: prevImg,
-                    color: Colors.black87,
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(32),
-                    child: Icon(FluentIcons.chevron_left_48_filled, color: Colors.white),
-                  ),
-                  FlatButton(
-                    onPressed: nextImg,
-                    color: Colors.black87,
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(32),
-                    child: Icon(FluentIcons.chevron_right_48_filled, color: Colors.white),
-                  )
-                ],
-              ),
-            )
-          ],
+        GridView.count(
+          padding: WebTheme.defaultPagePadding.copyWith(top: 16),
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          childAspectRatio: 5/5,
+          crossAxisCount: MediaQuery.of(context).size.width~/320,
+          children: widget.data.galleryUrl.map((e) => GalleryGridItem(
+            urls: widget.data.galleryUrl,
+            index: widget.data.galleryUrl.indexOf(e))).toList(),
         )
       ],
     );
