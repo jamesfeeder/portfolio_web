@@ -44,15 +44,15 @@ class _WorkGridItemState extends State<WorkGridItem> {
         // print("${value.localPosition}, $_cardWidth, $_cardHeight");
         setState(() {
           _transDuration = 500;
-          if (value.localPosition.dx+160+24+4 < _cardWidth) {
+          if (value.localPosition.dx+160+16+4+8 < _cardWidth) {
             _left = value.localPosition.dx+5;
           } else {
-            _left = _cardWidth-160-24-4;
+            _left = _cardWidth-160-16-4-8;
           }
-          if (value.localPosition.dy+48+24 < _cardHeight) {
+          if (value.localPosition.dy+48+16+8 < _cardHeight) {
             _top = value.localPosition.dy+5;
           } else {
-            _top = _cardHeight-48-24;
+            _top = _cardHeight-48-16-8;
           }
         });
       },
@@ -145,13 +145,15 @@ class _WorkGridItemState extends State<WorkGridItem> {
           child: AnimatedOpacity(
             duration: Duration(milliseconds: 200),
             opacity: _opacity,
-            child: Card(
-              margin: EdgeInsets.all(8),
-              elevation: 4,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Click for more detail"),
+            child: IgnorePointer(
+              child: Card(
+                margin: EdgeInsets.all(8),
+                elevation: 4,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Click for more detail"),
+                  ),
                 ),
               ),
             )

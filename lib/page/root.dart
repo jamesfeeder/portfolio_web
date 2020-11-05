@@ -53,7 +53,7 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
                 SizedBox(width: WebTheme.horizontalPadding,)
               ],
             ),
-            SizedBox(height: 0,)
+            SizedBox(height: 4,)
           ],
         ),
       ),
@@ -66,11 +66,11 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
     return TabBar(
       labelPadding: EdgeInsets.fromLTRB(16, 4, 16, 0),
       labelColor: Colors.white,
-      labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+      labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
       unselectedLabelColor: Colors.black,
-      unselectedLabelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+      unselectedLabelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
       indicator: BubbleTabIndicator(
-        indicatorHeight: 38,
+        indicatorHeight: 44,
         indicatorRadius: 100,
         indicatorColor: Colors.black,
         padding: EdgeInsets.zero
