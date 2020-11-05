@@ -19,7 +19,7 @@ class Work {
     @required this.description,
     this.longDescription,
     @required this.category,
-    this.technology,
+    @required this.technology,
     @required this.projectIconUrl,
     @required this.cardThumbnailUrl,
     this.cardThumbnailAlignment,
