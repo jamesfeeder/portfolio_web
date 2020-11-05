@@ -7,7 +7,7 @@ class GalleryGridItem extends StatefulWidget {
   final List<String> urls;
   final int index;
 
-  GalleryGridItem({@required this.urls, @required this.index});
+  GalleryGridItem({Key key, @required this.urls, @required this.index})  : super(key: key);
 
   @override
   _GalleryGridItemState createState() => _GalleryGridItemState();
@@ -82,13 +82,19 @@ class _GalleryGridItemState extends State<GalleryGridItem> {
           focusElevation: 4,
           highlightElevation: 4,
           hoverElevation: 8,
-          child: Container(
-            width: cardWidth,
-            height: cardHeight,
-            child: Image.asset(
-              widget.urls[widget.index],
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
+          child: Hero(
+            tag: "${widget.urls[widget.index]}",
+            child: Material(
+              color: Colors.transparent,
+              child: Container(
+                width: cardWidth,
+                height: cardHeight,
+                child: Image.asset(
+                  widget.urls[widget.index],
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
+                ),
+              ),
             ),
           )
         ),

@@ -136,10 +136,16 @@ class _ImgViewerState extends State<ImgViewer> with SingleTickerProviderStateMix
               isZoomed = !isZoomed;
             });
           },
-          child: Image.asset(
-            widget.url,
-            isAntiAlias: true,
-            height: isZoomed ? null : MediaQuery.of(context).size.height,
+          child: Hero(
+            tag: "${widget.url}",
+            child: Material(
+              color: Colors.transparent,
+              child: Image.asset(
+                widget.url,
+                isAntiAlias: false,
+                height: isZoomed ? null : MediaQuery.of(context).size.height,
+              ),
+            ),
           ),
         ),
       ),
