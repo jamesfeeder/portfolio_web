@@ -7,8 +7,7 @@ class WorkGridItem extends StatefulWidget {
   
   final Work data;
 
-  WorkGridItem({@required this.data});
-
+  WorkGridItem({Key key, @required this.data}) : super(key: key);
   @override
   _WorkGridItemState createState() => _WorkGridItemState();
 }

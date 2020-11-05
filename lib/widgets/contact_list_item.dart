@@ -12,6 +12,7 @@ class ContactListItem extends StatelessWidget {
   final String tooltip;
 
   ContactListItem({
+    Key key,
     @required this.title,
     @required this.contact,
     @required this.icon,
@@ -19,7 +20,7 @@ class ContactListItem extends StatelessWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.tooltip
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
