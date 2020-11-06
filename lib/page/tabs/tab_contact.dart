@@ -13,23 +13,23 @@ class ContactTab extends StatelessWidget {
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height-WebTheme.appBarHeight,
-            child: Padding(
-              padding: WebTheme.defaultPagePadding,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  "Contact".toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.w700
-                  ),
-                ),
-              ),
-            ),
-          ),
+          // Container(
+          //   width: MediaQuery.of(context).size.width,
+          //   height: MediaQuery.of(context).size.height-WebTheme.appBarHeight,
+          //   child: Padding(
+          //     padding: WebTheme.defaultPagePadding,
+          //     child: Align(
+          //       alignment: Alignment.topCenter,
+          //       child: Text(
+          //         "Contact".toUpperCase(),
+          //         style: TextStyle(
+          //           fontSize: 48,
+          //           fontWeight: FontWeight.w700
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height-WebTheme.appBarHeight,
@@ -40,8 +40,17 @@ class ContactTab extends StatelessWidget {
                 child: Padding(
                   padding: WebTheme.defaultItemPadding,
                   child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Text(
+                        "Contact".toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w700
+                        ),
+                      ),
+                      SizedBox(height: 24,),
                       Container(
                         width: 360,
                         child: ContactListItem(
