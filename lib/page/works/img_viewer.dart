@@ -142,7 +142,7 @@ class _ImgViewerState extends State<ImgViewer> with SingleTickerProviderStateMix
               color: Colors.transparent,
               child: Image.asset(
                 widget.url,
-                isAntiAlias: false,
+                isAntiAlias: true,
                 height: isZoomed ? null : MediaQuery.of(context).size.height,
               ),
             ),

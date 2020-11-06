@@ -91,6 +91,7 @@ class _WorkGridItemState extends State<WorkGridItem> {
                 height: cardHeight*0.6,
                 child: Image.asset(
                   widget.data.cardThumbnailUrl,
+                  isAntiAlias: true,
                   alignment: widget.data.cardThumbnailAlignment == null 
                     ? Alignment.center 
                     : widget.data.cardThumbnailAlignment,

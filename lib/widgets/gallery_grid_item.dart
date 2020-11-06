@@ -92,6 +92,7 @@ class _GalleryGridItemState extends State<GalleryGridItem> {
                 child: Image.asset(
                   widget.urls[widget.index],
                   fit: BoxFit.cover,
+                  isAntiAlias: true,
                   alignment: Alignment.topCenter,
                 ),
               ),

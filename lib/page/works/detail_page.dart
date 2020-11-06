@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:markdown_widget/markdown_generator.dart';
+import 'package:markdown_widget/markdown_helper.dart';
 import 'package:portfolio/data/data.dart';
 import 'package:portfolio/models/work.dart';
 import 'package:portfolio/theme.dart';
@@ -159,7 +160,7 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
             child: Container(
               height: 192,
               width: 192,
-              child: Image.asset(widget.data.projectIconUrl),
+              child: Image.asset(widget.data.projectIconUrl, isAntiAlias: true),
             ),
           ),
           Expanded(
