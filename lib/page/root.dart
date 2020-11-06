@@ -25,7 +25,10 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: tabs.length, initialIndex: 1);
+    _tabController = TabController(vsync: this, length: tabs.length, initialIndex: 0);
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) setState(() {});
+    });
     scrollUpButton = null;
   }
 
@@ -47,10 +50,41 @@ class _RootState extends State<Root>  with SingleTickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                navBar(),
-                SizedBox(width: WebTheme.horizontalPadding,)
+                Row(
+                  children: [
+                    SizedBox(width: WebTheme.horizontalPadding,),
+                    FittedBox(
+                      child: AnimatedOpacity(
+                        curve: Curves.easeInOut,
+                        duration: Duration(milliseconds: 250),
+                        opacity: _tabController.index == 0 ? 0 : 1,
+                        child: Card(
+                          clipBehavior: Clip.antiAlias,
+                          elevation: 0,
+                          child: Container(
+                            width: 48,
+                            height: 48,
+                            padding: EdgeInsets.all(8),
+                            color: Colors.grey[900],
+                            child: Align(
+                              alignment: Alignment.bottomRight,
+                              child: Text("JM", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ) ,
+                Row(
+                  children: [
+                    navBar(),
+                    SizedBox(width: WebTheme.horizontalPadding,)
+                  ],
+                ) 
               ],
             ),
             SizedBox(height: 4,)
