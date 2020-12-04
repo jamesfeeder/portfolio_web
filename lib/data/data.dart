@@ -43,6 +43,40 @@ and supported Markdown Text formatting for styling and organize the content.
         "assets/quicknote/04.png",
       ],
     ),
+  //NOTE: FSC Tracker Data
+    Work(
+      title: "FSC Tracker",
+      category: ["PWA"],
+      description: "Content Management System for Nam Yang Tai Co-operatives Limited (NTC)",
+      longDescription: '''
+Content Management System for Nam Yang Tai Co-operatives Limited (NTC).
+#### Feature
+- Dashboard for display overall information, with history stored user can open the old information for statistic calculation
+- Save, Edit and View forms
+- All form store on Cloud Storage (Firebase Realtime Database)
+- Show Google Maps with Start and Destination Marker in Shipment Information Page.
+      ''',
+      technology: [
+        "Flutter Web",
+        "Firebase Realtime Database",
+        "Firebase Cloud Function"
+        "Google Maps"
+      ],
+      projectRepoUrl: "https://github.com/jamesfeeder/fsc",
+      projectColor: Color(0xff00553D),
+      projectSecondaryColor: Colors.white,
+      projectIconUrl: "assets/ntc_fsc/00.png",
+      cardThumbnailUrl: "assets/ntc_fsc/02.png",
+      cardThumbnailAlignment: Alignment.topCenter,
+      galleryUrl: [
+        "assets/ntc_fsc/01.png",
+        "assets/ntc_fsc/02.png",
+        "assets/ntc_fsc/03.png",
+        "assets/ntc_fsc/04.png",
+        "assets/ntc_fsc/05.png",
+        "assets/ntc_fsc/06.png"
+      ]
+    ),
   //NOTE: SABISU Data
     Work(
       title: "SABISU",
@@ -84,39 +118,5 @@ This Platform provided 2 applications
         "assets/sabisu/11.jpg"
       ]
     ),
-  //NOTE: FSC Tracker Data
-    Work(
-      title: "FSC Tracker",
-      category: ["PWA"],
-      description: "Content Management System for Nam Yang Tai Co-operatives Limited (NTC)",
-      longDescription: '''
-Content Management System for Nam Yang Tai Co-operatives Limited (NTC).
-#### Feature
-- Dashboard for display overall information, with history stored user can open the old information for statistic calculation
-- Save, Edit and View forms
-- All form store on Cloud Storage (Firebase Realtime Database)
-- Show Google Maps with Start and Destination Marker in Shipment Information Page.
-      ''',
-      technology: [
-        "Flutter Web",
-        "Firebase Realtime Database",
-        "Firebase Cloud Function"
-        "Google Maps"
-      ],
-      projectRepoUrl: "https://github.com/jamesfeeder/fsc",
-      projectColor: Color(0xff00553D),
-      projectSecondaryColor: Colors.white,
-      projectIconUrl: "assets/ntc_fsc/00.png",
-      cardThumbnailUrl: "assets/ntc_fsc/02.png",
-      cardThumbnailAlignment: Alignment.topCenter,
-      galleryUrl: [
-        "assets/ntc_fsc/01.png",
-        "assets/ntc_fsc/02.png",
-        "assets/ntc_fsc/03.png",
-        "assets/ntc_fsc/04.png",
-        "assets/ntc_fsc/05.png",
-        "assets/ntc_fsc/06.png"
-      ]
-    )
   ];
 }
