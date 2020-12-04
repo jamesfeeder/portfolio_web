@@ -9,29 +9,29 @@ class WorksTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
+    return CustomScrollView(
+      slivers: [
+        SliverPadding(
           padding: WebTheme.defaultPagePadding.copyWith(bottom: 0),
-          child: Text(
-            "Works".toUpperCase(),
-            style: TextStyle(
-              fontSize: 48,
-              fontWeight: FontWeight.w700
+          sliver: SliverToBoxAdapter(
+            child: Text(
+              "Works".toUpperCase(),
+              style: TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.w700
+              ),
             ),
-          ),
+          )
         ),
-        GridView.count(
-          addSemanticIndexes: true,
-          addRepaintBoundaries: true,
+        SliverPadding(
           padding: WebTheme.defaultPagePadding.copyWith(top: 16),
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 5/4,
-          crossAxisCount: MediaQuery.of(context).size.width~/400,
-          children: _workList,
+          sliver: SliverGrid.count(
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 5/4,
+            crossAxisCount: MediaQuery.of(context).size.width~/400,
+            children: _workList,
+          ),
         )
       ],
     );

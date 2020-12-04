@@ -129,12 +129,26 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
   }
 
   Widget pageContent() {
-    return ListView(
-      children: [
+    var mainContent = [
         header(),
         SizedBox(height: 16),
         description(),
         SizedBox(height: 16),
+        Padding(
+          padding: WebTheme.defaultPagePadding.subtract(EdgeInsets.symmetric(vertical: WebTheme.defaultPagePadding.top)),
+          child: Text("Gallery", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
+        ),
+    ];
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return mainContent[index];
+            },
+            childCount: mainContent.length
+          ),
+        ),
         gallery()
       ],
     );
@@ -321,29 +335,18 @@ class _WorkDetailPageState extends State<WorkDetailPage> {
   }
 
   Widget gallery() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: WebTheme.defaultPagePadding.subtract(EdgeInsets.symmetric(vertical: WebTheme.defaultPagePadding.top)),
-          child: Text("Gallery", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
-        ),
-        GridView.count(
-          addRepaintBoundaries: true,
-          addSemanticIndexes: true,
-          padding: WebTheme.defaultPagePadding.copyWith(top: 16),
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 5/5,
-          crossAxisCount: MediaQuery.of(context).size.width~/320,
-          children: widget.data.galleryUrl.map((e) => GalleryGridItem(
-            key: ValueKey(e),
-            urls: widget.data.galleryUrl,
-            index: widget.data.galleryUrl.indexOf(e))).toList(),
-        )
-      ],
+    return SliverPadding(
+      padding: WebTheme.defaultPagePadding.copyWith(top: 16),
+      sliver: SliverGrid.count(
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+        childAspectRatio: 5/5,
+        crossAxisCount: MediaQuery.of(context).size.width~/320,
+        children: widget.data.galleryUrl.map((e) => GalleryGridItem(
+          key: ValueKey(e),
+          urls: widget.data.galleryUrl,
+          index: widget.data.galleryUrl.indexOf(e))).toList(),
+      ),
     );
   }
 }
